@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<title>Users</title>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div class="container">
+	<form method="post" th:object="${form}" action="/users/add-item">
+		<div class="form-group">
+			<label th:for="appId">Applications</label> 
+			<select name="appId">
+				<option th:each="app :*{apps}" 
+						th:text="${app.name}"
+						th:value="${app.identifier}"></option>
+			</select>
+		</div>
+
+	<input type="hidden" name="userId" th:value="${user.identifier}"/>
+
+	<input class="btn btn-success" type="submit" value="Add Item "/>
+	
+	</form>
+	<br/>
+	<br/>
+	<br/>
+	<p>
+			<a class="btn btn-default" th:href="'/users/view/' + ${user.identifier}">Back</a>
+		</p>
+</div>
+</body>
+</html>
